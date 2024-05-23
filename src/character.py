@@ -1,9 +1,9 @@
 import math
 import random
-from weapon import Weapon
+from src.weapon import Weapon
 
 class Character:
-  def __init__(self, name: str, level: int, str: str, proficiencies: list[str]):
+  def __init__(self, name: str, level: int, str: int, proficiencies: list[str]):
     self.name = name
     self.level = level
     self.str = str
@@ -23,10 +23,7 @@ class Character:
     return damage
   
   def __ability_modifier(self, ability_score: int):
-    modifier = ability_score - 10
-    if modifier < 0:
-      return math.ceil(modifier / 2)
-    return math.floor(modifier / 2)
+    return math.floor((ability_score - 10) / 2)
   
   def __proficiency_bonus(self):
     return 1 + (math.ceil(self.level / 4))
